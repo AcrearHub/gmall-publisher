@@ -14,7 +14,6 @@ import java.util.List;
 @Mapper
 public interface TradeStateMapper {
     //获取某天总交易额，@Insert、@Delete、@Update、@Select：通过JDBC将crud封装到方法中
-    //（可选）当有物化视图时，select要对物化视图进行（详见Flink中状态一致性）
     @Select("select sum(order_amount) order_amount from dws_trade_province_order_window where toYYYYMMDD(stt)=#{date}")
     BigDecimal selectGMV(@Param("date") Integer date);  //当只有一个参数时@Param可不加
 
